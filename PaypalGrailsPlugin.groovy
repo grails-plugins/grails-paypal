@@ -1,5 +1,5 @@
 class PaypalGrailsPlugin {
-	def version = "0.6.4"
+	def version = "0.6.5"
 	def grailsVersion = "1.1 > *"
 	def pluginExcludes = [
 		"grails-app/views/paypal/test.gsp"
@@ -12,7 +12,7 @@ class PaypalGrailsPlugin {
 	def description = '''\
 This plug-in allows Grails applications to integrate with Paypal and its Instant Payment Notification (IPN) system.
 
-A PayPalController is provided that has a "notify" action which deals with responses from the PayPal IPN. In order for this to function
+A PayPalController is provided that has a "notifyPaypal" action which deals with responses from the PayPal IPN. In order for this to function
 you need to enable IPN in your PayPal Profile under Profile / Instant Payment Notification Preferences and provide PayPal with the URL
 you have mapped the "notify" action to.
 
