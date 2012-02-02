@@ -4,7 +4,7 @@ class PaypalController {
 
 	static allowedMethods = [buy: 'POST', notify: 'POST']
 
-	def notify = {
+	def notifyPaypal = {
 		log.debug "Received IPN notification from PayPal Server ${params}"
 		def config = grailsApplication.config.grails.paypal
 		def server = config.server
