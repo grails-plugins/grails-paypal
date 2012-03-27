@@ -162,7 +162,7 @@ REQUEST INFO: ${params}
 			if (params.cancelController) {
 				commonParams.cancelController = params.cancelController
 			}
-			def notifyURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'notify', params: commonParams).encodeAsURL()
+			def notifyURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'notifyPaypal', params: commonParams).encodeAsURL()
 			def successURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'success', params: commonParams).encodeAsURL()
 			def cancelURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'cancel', params: commonParams).encodeAsURL()
 
@@ -214,7 +214,7 @@ REQUEST INFO: ${params}
 		if (params.cancelController) {
 			commonParams.cancelController = params.cancelController
 		}
-		def notifyURL = g.createLink(absolute: true, controller: 'paypal', action: 'notify', params: commonParams).encodeAsURL()
+		def notifyURL = g.createLink(absolute: true, controller: 'paypal', action: 'notifyPaypal', params: commonParams).encodeAsURL()
 		def successURL = g.createLink(absolute: true, controller: 'paypal', action: 'success', params: commonParams).encodeAsURL()
 		def cancelURL = g.createLink(absolute: true, controller: 'paypal', action: 'cancel', params: commonParams).encodeAsURL()
 
