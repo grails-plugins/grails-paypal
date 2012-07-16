@@ -178,6 +178,8 @@ REQUEST INFO: ${params}
             }
 			url << "tax=${payment.tax}&"
 			url << "currency_code=${payment.currency}&"
+			if (params.lc) 
+			    url << "lc=${params.lc}&"
 			url << "notify_url=${notifyURL}&"
 			url << "return=${successURL}&"
 			url << "cancel_return=${cancelURL}"
