@@ -1,5 +1,5 @@
 class PaypalGrailsPlugin {
-	def version = "0.6.8-SNAPSHOT"
+	def version = "0.6.8"
 	def grailsVersion = "1.1 > *"
 	def pluginExcludes = [
 		"grails-app/views/paypal/test.gsp"
