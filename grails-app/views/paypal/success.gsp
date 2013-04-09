@@ -10,7 +10,7 @@
 				<span class="transSummaryItemName">Transaction ID:</span>
 				<span class="transSummaryItemValue">${payment.transactionId}</span>
 			</div>
-			<g:render template="txsummary" model="[payment:payment]"/>
+			<g:render template="txsummary" model="[payment:payment]" plugin="paypal" />
 		</div>
 	</body>
 </html>
