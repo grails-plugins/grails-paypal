@@ -1,4 +1,4 @@
-<plugin name='paypal' version='0.6.9' grailsVersion='1.1 &gt; *'>
+<plugin name='paypal' version='0.6.10' grailsVersion='1.1 &gt; *'>
   <author>Matthias Bohlen, (originally by Graeme Rocher, followed by Matt Stine)</author>
   <authorEmail>mbohlen@mbohlen.de, matt@mattstine.com</authorEmail>
   <title>Provides integration with Paypal's Instant Payment Notfication (IPN) system</title>
