@@ -1,6 +1,9 @@
 package org.grails.paypal
 
 class Payment implements Serializable {
+        static mapping = {
+                autoImport false
+        }
 	static final PENDING = 'PENDING'
 	static final INVALID = 'INVALID'
 	static final FAILED = 'FAILED'
