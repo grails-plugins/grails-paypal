@@ -24,5 +24,10 @@ In order for this plug-in to function you must configure the following settings 
 '''
 
 	def documentation = "http://grails.org/plugin/paypal"
+	
+	def doWithSpring = {
+        	// TODO Implement runtime spring config (optional)
+        	currencyConverter(org.grails.paypal.CurrencyValueConverter)
+        }
 }
 
