@@ -1,0 +1,23 @@
+package org.grails.paypal
+
+import org.grails.databinding.converters.ValueConverter
+
+/**
+ * A custom converter which will convert 
+ * currencyCode String of the form 'EUR'
+ * into a Currency object.
+ */
+class CurrencyValueConverter implements ValueConverter {
+    
+    boolean canConvert(value) {
+        value instanceof String
+    }
+    
+    def convert(value) {
+        Currency.getInstance(value)
+    }
+
+    Class<?> getTargetType() {
+        java.util.Currency
+    }   
+}
