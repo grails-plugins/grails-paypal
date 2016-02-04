@@ -1,6 +1,8 @@
+package org.grails.paypal
+
 import grails.util.GrailsUtil
 
-class PaypalUrlMappings {
+class UrlMappings {
 	static mappings = {
 		"/paypal/buy/$transactionId?"(controller:"paypal", action:"buy")
 		"/paypal/cart/$transactionId"(controller:"paypal", action:"uploadCart")
