@@ -2,7 +2,7 @@
 grails:
     profile: web-plugin
     codegen:
-        defaultPackage: grails.paypal
+        defaultPackage: org.grails.paypal
     spring:
         transactionManagement: false
 info:
