@@ -1,5 +1,31 @@
-target
-target/*
-web-app
+# JetBrains IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+.gradle
+build/
 
+# Log files
+*.log
+
+# Libraries and others
+*.zip
+
+# Target
+target/
+target-eclipse/
+target/*
+
+.DS_Store
+
+docs/
+plugin.xml
+.settings
+
+# Unused grails files
+.classpath
+.project
+test/reports
+
+web-app
 *.zip
