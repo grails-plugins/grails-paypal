@@ -1,3 +1,5 @@
+package org.grails.paypal
+
 class PaypalGrailsPlugin {
 	def version = "0.6.10"
 	def grailsVersion = "1.1 > *"
