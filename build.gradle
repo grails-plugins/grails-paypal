@@ -53,6 +53,7 @@ dependencies {
     provided "org.grails:grails-plugin-domain-class"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
+    testCompile "org.grails.plugins:build-test-data:3.0.0"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 }
