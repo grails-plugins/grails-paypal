@@ -1,8 +1,5 @@
 package org.grails.plugin.paypal
 
-import grails.persistence.Entity
-
-@Entity
 class Payment implements Serializable {
     static final PENDING = 'PENDING'
     static final INVALID = 'INVALID'
