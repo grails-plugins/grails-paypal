@@ -24,24 +24,3 @@ hibernate {
     cache.use_query_cache = true
     cache.provider_class = 'com.opensymphony.oscache.hibernate.OSCacheProvider'
 }
-// environment specific settings
-environments {
-    development {
-        dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-        }
-    }
-    test {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-        }
-    }
-    production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-        }
-    }
-}
