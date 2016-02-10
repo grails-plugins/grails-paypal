@@ -3,15 +3,12 @@ grails:
     profile: web-plugin
     codegen:
         defaultPackage: org.grails.plugin.paypal
-    spring:
-        transactionManagement: false
 info:
     app:
         name: '@info.app.name@'
         version: '@info.app.version@'
         grailsVersion: '@info.app.grailsVersion@'
 spring:
-
     groovy:
         template:
             check-template-location: false
@@ -41,7 +38,6 @@ grails:
               - application/json
               - text/json
             multipartForm: multipart/form-data
-            pdf: application/pdf
             rss: application/rss+xml
             text: text/plain
             hal:
@@ -68,10 +64,13 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
-endpoints:
-    jmx:
-        unique-names: true
-
+hibernate:
+    cache:
+        use_second_level_cache : true
+        use_query_cache : true
+        provider_class : 'org.hibernate.cache.EhCacheProvider'
+        region.factory_class : 'org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory'
+#        queries: false
 ---
 dataSource:
     pooled: true
