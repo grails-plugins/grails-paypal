@@ -1,5 +1,8 @@
-package org.grails.paypal
+package org.grails.plugin.paypal
 
+import grails.persistence.Entity
+
+@Entity
 class Payment implements Serializable {
         static mapping = {
                 autoImport false
@@ -28,8 +31,10 @@ class Payment implements Serializable {
     def transactionIdPrefix = "TRANS"
 
 	transient beforeInsert = {
+        println "Start >>>>>  BEFORE INSERT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 		transactionId = "${transactionIdPrefix}-$buyerId-${System.currentTimeMillis()}"
-	}
+        println "End   >>>>>  BEFORE INSERT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    }
 
 	String toString() { "Payment: ${transactionId ?: 'not saved'}"}
 

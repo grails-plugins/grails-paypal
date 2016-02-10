@@ -1,5 +1,8 @@
-package org.grails.paypal
+package org.grails.plugin.paypal
 
+import grails.persistence.Entity
+
+@Entity
 class PaymentItem implements Serializable {
 	BigDecimal amount
     BigDecimal discountAmount = 0

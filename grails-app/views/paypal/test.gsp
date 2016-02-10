@@ -1,3 +1,4 @@
+<%@ page import="org.grails.plugin.paypal.PaymentItem; org.grails.plugin.paypal.Payment" %>
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -22,10 +23,10 @@
 
         Cart upload..
         <%
-            if (org.grails.paypal.Payment.count() == 0) {
-                payment = new org.grails.paypal.Payment(buyerId:10)
+            if (Payment.count() == 0) {
+                payment = new Payment(buyerId:10)
                 payment.addToPaymentItems(
-                    new org.grails.paypal.PaymentItem(
+                    new PaymentItem(
                         amount: 99,
                         discountAmount: 9,
                         itemName: "iPod Nano", 
@@ -35,7 +36,7 @@
                 payment.save(flush:true)
             }
             else
-                payment = org.grails.paypal.Payment.list()[0]
+                payment = org.grails.'plugin.paypal'.Payment.list()[0]
         %>
 
         <g:form

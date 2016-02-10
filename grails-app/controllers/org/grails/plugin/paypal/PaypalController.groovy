@@ -1,6 +1,9 @@
-package org.grails.paypal
+package org.grails.plugin.paypal
+
+import grails.core.GrailsApplication
 
 class PaypalController {
+    GrailsApplication grailsApplication
 
 	static allowedMethods = [buy: 'POST', notifyPaypal: 'POST']
 
@@ -130,19 +133,25 @@ REQUEST INFO: ${params}
 	}
 
 	def buy = {
+        println(">>>>> START")
 		def payment
 		if (params.transactionId) {
+            println(">>>>>>>>>>>> FOUND ID >>>")
 			payment = Payment.findByTransactionId(params.transactionId)
 		}
 		else {
+            println(">>>>>>>>>>>> creating new instance >>")
 			payment = new Payment(params)
 			payment.addToPaymentItems(new PaymentItem(params))
 		}
 
+        println(">>> AFTER IF ELSE block>>>>>>>>>>>")
 		if (payment?.id) log.debug "Resuming existing transaction $payment"
 		if (payment?.validate()) {
 			request.payment = payment
-			payment.save(flush: true)
+            println(">>>> Before saving>>>>>>>>>>>>>> 1")
+			payment.save(flush: true, failOnError: true)
+            println("After saving >>>>>>>>>>>>>>>>>>>> 1")
 			def config = grailsApplication.config.grails.paypal
 			def server = config.server
 			def baseUrl = params.baseUrl
@@ -186,10 +195,12 @@ REQUEST INFO: ${params}
 
 			log.debug "Redirection to PayPal with URL: $url"
 
-			redirect(url: url)
+            println(">>>>>>>>>>>>>>>>>>>>> URL to redirect if block ...   $url")
+            redirect(url: url)
 		}
 		else {
 			flash.payment = payment
+            println(">>>>>>>>>>>>>>>>>>>>> URL to redirect else block ...   $params.originalURL")
 			redirect(url: params.originalURL)
 		}
 	}

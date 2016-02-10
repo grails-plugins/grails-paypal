@@ -1,4 +1,4 @@
-package org.grails.paypal
+package org.grails.plugin.paypal
 
 enum USState {
 	AL('Alabama'),

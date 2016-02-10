@@ -1,4 +1,4 @@
-package org.grails.paypal
+package org.grails.plugin.paypal
 
 import grails.util.GrailsUtil
 
