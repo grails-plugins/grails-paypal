@@ -39,7 +39,7 @@ This plug-in provides 3 new artefacts:
 * A PaypalTagLib - a tag library that provides the ability to create PayPal "buy now" buttons
 * A Payment domain class - a domain class that is used to store information about Payments
  
-To get started you need to configure PayPal server and merchant email address in Config.groovy as well as the grails server URL used for absolute links. For example:
+To get started you need to configure PayPal server and merchant email address in application.groovy as well as the grails server URL used for absolute links. For example:
 
 ```groovy
 environments { 
