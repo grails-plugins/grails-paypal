@@ -77,32 +77,66 @@ track the order. The button will also send the IPN URL that PayPal should use to
  
 Payment Tracking with Filters
 -----------------------------
-A typical way to integrate with the PayPal plug-in is through the use of filters. The PayPal plug-in places the payment instance into the request when it has been created so a filter that executes after the PaypalController and integrate with it.
+A typical way to integrate with the PayPal plug-in is through the use of interceptors. The PayPal plug-in places the payment instance into the request when it has been created so an interceptor that executes after the PaypalController and integrate with it.
 
 For example:
 ```groovy
-buyFilter(controller:"paypal", action:"buy") {
- after = {
-      new IPodPayment(payment:request.payment, IPod.get(params.id)).save()
- }
+class PaypalBuyInterceptor {
+
+    PaypalBuyInterceptor() {
+        match(controller:"paypal", action:"buy")
+    }
+
+    boolean before() { true }
+
+    boolean after() {
+        new IPodPayment(payment:request.payment, IPod.get(params.id)).save()
+    }
+
+    void afterView() {
+        // no-op
+    }
 }
-paymentReceivedFilter(controller:'paypal', action:'(success|notifyPaypal)') {
-  after = {
-     def payment = request.payment
-     if(payment && payment.status == org.grails.paypal.Payment.COMPLETE) {
-         def payment = IPodPayment.findByPayment(request.payment)
-         payment.shipIt()
-     }
-  }
+
+class PaymentReceivedInterceptor {
+
+    PaymentReceivedInterceptor() {
+        match(controller:'paypal', action:'(success|notifyPaypal)')
+    }
+
+    boolean before() { true }
+
+    boolean after() {
+        def payment = request.payment
+        if (payment && payment.status == org.grails.paypal.Payment.COMPLETE) {
+             def payment = IPodPayment.findByPayment(request.payment)
+             payment.shipIt()
+        }
+    }
+
+    void afterView() {
+        // no-op
+    }
 }
 ```
 Returning to several different domains from Paypal
 --------------------------------------------------
 You can provide Paypal with a domain different from "grails.serverURL" just in case you need it. A typical case would be handling several domains with the same application, so your user follows where it started.
 ```groovy
-buyFilter(controller:"paypal", action:"buy") {
- before = {
-    params.baseUrl = "/** whatever domain you want Paypal to return once the payment is done *//"
- }
+class PaypalBuyInterceptor {
+
+    PaypalBuyInterceptor() {
+        match(controller:"paypal", action:"buy")
+    }
+
+    boolean before() {
+        params.baseUrl = "/** whatever domain you want Paypal to return once the payment is done *//"
+    }
+
+    boolean after() { true }
+
+    void afterView() {
+        // no-op
+    }
 }
 ```
