@@ -7,7 +7,7 @@ This plug-in allows Grails applications to integrate with Paypal and its Instant
 
 A PayPalController is provided that has a "notifyPaypal" action which deals with responses from the PayPal IPN. In order for this to function you need to enable IPN in your PayPal Profile under Profile / Instant Payment Notification Preferences and provide PayPal with the URL you have mapped the "notify" action to.
 
-In order for this plug-in to function you must configure the following settings in Config.groovy:
+In order for this plug-in to function you must configure the following settings in application.groovy:
 
 * grails.paypal.server - The URL of the paypal server
 * grails.paypal.email - The email of the merchant account
@@ -72,7 +72,7 @@ id such as a User id. The transactionId is used in case you are resuming an exis
 When the button is clicked the plugin will create and save a new instance of the org.grails.paypal.Payment class to 
 track the order. The button will also send the IPN URL that PayPal should use to send notifications back.
 
-> In order for IPN to function correctly you must set the grails.serverURL setting in Config.groovy to a web facing 
+> In order for IPN to function correctly you must set the grails.serverURL setting in application.groovy to a web facing 
 > domain or IP address (so that PayPal can do a post back)
  
 Payment Tracking with Filters
