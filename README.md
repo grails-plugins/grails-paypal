@@ -21,7 +21,7 @@ When used in a multi-project build:
 ```groovy
  grails {
      plugins {
-         compile project(':mybusiness')
+         compile project(':grails-paypal')
      }
  }
 ```
