@@ -16,6 +16,8 @@ class Payment implements Serializable {
     Currency currency = Currency.getInstance("USD") // default to USD
     Long buyerId
     BuyerInformation buyerInformation // details, provided by Paypal
+    BigDecimal shipping = 0.0
+    BigDecimal gross = 0.0
     def transactionIdPrefix = "TRANS"
 
     static hasMany = [paymentItems: PaymentItem]

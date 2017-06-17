@@ -3,6 +3,7 @@ package org.grails.plugin.paypal
 import grails.core.GrailsApplication
 
 class PaypalController {
+
     GrailsApplication grailsApplication
 
     static allowedMethods = [buy: 'POST', notifyPaypal: 'POST']
@@ -47,16 +48,19 @@ REQUEST INFO: ${params}
                         payment.paypalTransactionId = params.txn_id
                         payment.status = Payment.COMPLETE
                         updateBuyerInformation(payment, params)
+                        updateTotal(payment, params)
                         log.info "Verified payment ${payment} as COMPLETE"
                     } else if (status == 'Pending') {
                         payment.paypalTransactionId = params.txn_id
                         payment.status = Payment.PENDING
                         updateBuyerInformation(payment, params)
+                        updateTotal(payment, params)
                         log.info "Verified payment ${payment} as PENDING"
                     } else if (status == 'Failed') {
                         payment.paypalTransactionId = params.txn_id
                         payment.status = Payment.FAILED
                         updateBuyerInformation(payment, params)
+                        updateTotal(payment, params)
                         log.info "Verified payment ${payment} as FAILED"
                     }
                 }
@@ -74,13 +78,47 @@ REQUEST INFO: ${params}
         payment.buyerInformation = buyerInfo
     }
 
+    // only works with our modified payment - cbm
+    void updateTotal(payment, params) {
+        if (params?.mc_shipping) {
+            payment.shipping = new BigDecimal(params?.mc_shipping)
+        }
+        if (params.containsKey("tax")) {
+            payment.tax = Double.valueOf(params?.tax)
+        }
+        if (params.containsKey("mc_gross")) {
+            payment.gross = new BigDecimal(params?.mc_gross)
+        }
+    }
+
     def success = {
         def payment = Payment.findByTransactionId(params.transactionId)
         log.debug "Success notification received from PayPal for $payment with transaction id ${params.transactionId}"
+
+        // DEBUG
+        params.each { k, v -> println "$k - $v" }
+
         if (payment) {
             request.payment = payment
             if (payment.status != Payment.COMPLETE) {
                 payment.status = Payment.COMPLETE
+
+                // TEST FOR BUYER and PAYPAL trans - cbm
+                payment.paypalTransactionId = params.txn_id
+                updateBuyerInformation(payment, params)
+                log.info "Updated payment ${payment} with buyer and paypalTransactionId"
+
+                // only works with our modified payment
+                if (params.mc_shipping) {
+                payment.shipping = new BigDecimal(params?.mc_shipping)
+                }
+                if (params.tax) {
+                    payment.tax = Double.valueOf(params?.tax)
+                }
+                payment.gross = new BigDecimal(params?.mc_gross)
+
+                updateTotal(payment, params)
+
                 payment.save(flush: true)
             }
 
