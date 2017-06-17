@@ -109,8 +109,12 @@ REQUEST INFO: ${params}
                 log.info "Updated payment ${payment} with buyer and paypalTransactionId"
 
                 // only works with our modified payment
+                if (params.mc_shipping) {
                 payment.shipping = new BigDecimal(params?.mc_shipping)
-                payment.tax = Double.valueOf(params?.tax)
+                }
+                if (params.tax) {
+                    payment.tax = Double.valueOf(params?.tax)
+                }
                 payment.gross = new BigDecimal(params?.mc_gross)
 
                 updateTotal(payment, params)
