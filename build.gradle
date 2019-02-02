@@ -65,7 +65,7 @@ dependencies {
     // compile "org.hibernate:hibernate-core:5.1.1.Final"
     // compile "org.hibernate:hibernate-ehcache:5.1.1.Final"
 
-    compile "org.grails:grails-datastore-gorm-async:6.1.7.RELEASE" // TESTING @@@@@@
+    // compile "org.grails:grails-datastore-gorm-async:6.1.4.RELEASE" // TESTING @@@@@@
 
     testCompile "org.grails:grails-plugin-testing"
 //    testCompile "org.grails.plugins:build-test-data:3.0.0"
