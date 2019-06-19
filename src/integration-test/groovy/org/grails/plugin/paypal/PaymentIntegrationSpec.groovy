@@ -1,12 +1,13 @@
 package org.grails.plugin.paypal
 
-import grails.test.mixin.integration.Integration
+import grails.testing.gorm.DomainUnitTest
+import grails.testing.mixin.integration.Integration
 import grails.transaction.Rollback
 import spock.lang.Specification
 
 @Rollback
 @Integration
-class PaymentSpec extends Specification {
+class PaymentIntegrationSpec extends Specification implements DomainUnitTest<Payment> {
 	void testValidatePayment() {
         when:
 		def payment = new Payment()

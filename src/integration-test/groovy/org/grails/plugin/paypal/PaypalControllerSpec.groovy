@@ -1,19 +1,26 @@
 package org.grails.plugin.paypal
 
 import grails.core.GrailsApplication
-import grails.test.mixin.TestFor
-import grails.test.mixin.integration.Integration
+import grails.testing.mixin.integration.Integration
+import grails.testing.spring.AutowiredTest
+import grails.testing.web.controllers.ControllerUnitTest
 import grails.transaction.Rollback
-import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Specification
 
 @Rollback
 @Integration
-@TestFor(PaypalController)
-class PaypalControllerSpec extends Specification {
+// @TestFor(PaypalController)
+class PaypalControllerSpec extends Specification implements ControllerUnitTest<PaypalController>,
+        AutowiredTest {
     def oldConfig
 
-    @Autowired
+
+    Closure doWithSpring() {{ ->
+        grailsApplication GrailsApplication
+    }}
+
+
+    // @Autowired
     GrailsApplication grailsApplication
 
     void setup() {

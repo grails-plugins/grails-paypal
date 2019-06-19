@@ -1,13 +1,9 @@
 package org.grails.plugin.paypal
 
-import grails.test.mixin.TestFor
 import spock.lang.Specification
+import grails.testing.gorm.DomainUnitTest
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
-@TestFor(Payment)
-class PaymentSpec extends Specification {
+class PaymentSpec extends Specification implements DomainUnitTest<Payment> {
 
     def setup() {
     }
